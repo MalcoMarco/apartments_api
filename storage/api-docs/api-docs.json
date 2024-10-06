@@ -1,0 +1,694 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My API AIKO APARTMENTS",
+        "license": {
+            "name": "MIT"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/apartments": {
+            "get": {
+                "tags": [
+                    "Apartments"
+                ],
+                "summary": "Listar todos los apartamentos",
+                "description": "Obtiene una lista de todos los apartamentos disponibles. Puedes usar parámetros de paginación opcionales como `page` y `perPage` para paginar los resultados.",
+                "operationId": "5f66ade10f3ad7f35be34f76dae98cee",
+                "parameters": [
+                    {
+                        "name": "filter[level]",
+                        "in": "query",
+                        "description": "Filtrar por nivel del apartamento",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 3
+                        }
+                    },
+                    {
+                        "name": "filter[apartment_id]",
+                        "in": "query",
+                        "description": "Filtrar por ID del apartamento",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "Test-101"
+                        }
+                    },
+                    {
+                        "name": "filter[price]",
+                        "in": "query",
+                        "description": "Filtrar por precio del apartamento",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "decimal"
+                        }
+                    },
+                    {
+                        "name": "filter[total_amount]",
+                        "in": "query",
+                        "description": "Filtrar por monto total",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "decimal"
+                        }
+                    },
+                    {
+                        "name": "filter[availability_id]",
+                        "in": "query",
+                        "description": "Filtrar por ID de disponibilidad",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Número de página para la paginación",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Número de resultados por página",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 100
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Ordenar resultados por determinada columna. La ordenación es ascendente de forma predeterminada y se puede revertir agregando un guion (-)",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "-price"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de apartamentos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Apartment"
+                                            }
+                                        },
+                                        "current_page": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "from": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "per_page": {
+                                            "type": "integer",
+                                            "example": 100
+                                        },
+                                        "to": {
+                                            "type": "integer",
+                                            "example": 10
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Solicitud incorrecta",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Parámetro de paginación inválido."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Apartments"
+                ],
+                "summary": "Crear un nuevo apartamento",
+                "description": "Crea un nuevo apartamento con los detalles proporcionados.",
+                "operationId": "02761ca6eeb153407adc7365c68e70ac",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "level",
+                                    "apartment_id",
+                                    "price",
+                                    "total_amount",
+                                    "availability_id"
+                                ],
+                                "properties": {
+                                    "level": {
+                                        "description": "El nivel del apartamento",
+                                        "type": "integer",
+                                        "example": 3
+                                    },
+                                    "apartment_id": {
+                                        "description": "ID del apartamento",
+                                        "type": "string",
+                                        "example": "Test-101"
+                                    },
+                                    "price": {
+                                        "description": "Precio del apartamento",
+                                        "type": "string",
+                                        "format": "decimal",
+                                        "example": "350.00"
+                                    },
+                                    "total_amount": {
+                                        "description": "Monto total",
+                                        "type": "string",
+                                        "format": "decimal",
+                                        "example": "420.00"
+                                    },
+                                    "availability_id": {
+                                        "description": "ID de disponibilidad",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "comments": {
+                                        "description": "Comentarios adicionales",
+                                        "type": "string",
+                                        "example": "Apartamento renovado"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Apartamento creado exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Apartamento creado exitosamente"
+                                        },
+                                        "apartment": {
+                                            "$ref": "#/components/schemas/Apartment"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Datos inválidos"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/apartments/{apartment_id}": {
+            "get": {
+                "tags": [
+                    "Apartments"
+                ],
+                "summary": "Obtener los detalles de un apartamento",
+                "description": "Devuelve la información detallada de un apartamento específico basado en su ID.",
+                "operationId": "getApartamentById",
+                "parameters": [
+                    {
+                        "name": "apartment_id",
+                        "in": "path",
+                        "description": "apartment_id del apartamento",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Apartment"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Apartamento no encontrado"
+                    },
+                    "500": {
+                        "description": "Error del servidor"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Apartments"
+                ],
+                "summary": "Actualizar un apartamento existente",
+                "description": "Actualiza los detalles de un apartamento existente basado en el apartment_id proporcionado.",
+                "operationId": "8a34700868b5952cb46ef12c546a9bf3",
+                "parameters": [
+                    {
+                        "name": "apartment_id",
+                        "in": "path",
+                        "description": "apartment_id del apartamento que se va a actualizar",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Test-101"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "level",
+                                    "price",
+                                    "total_amount",
+                                    "availability_id"
+                                ],
+                                "properties": {
+                                    "level": {
+                                        "description": "El nivel del apartamento",
+                                        "type": "integer",
+                                        "example": 3
+                                    },
+                                    "price": {
+                                        "description": "Precio del apartamento",
+                                        "type": "string",
+                                        "format": "decimal",
+                                        "example": "350.00"
+                                    },
+                                    "total_amount": {
+                                        "description": "Monto total",
+                                        "type": "string",
+                                        "format": "decimal",
+                                        "example": "420.00"
+                                    },
+                                    "availability_id": {
+                                        "description": "ID de disponibilidad",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "comments": {
+                                        "description": "Comentarios adicionales",
+                                        "type": "string",
+                                        "example": "Apartamento renovado"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Apartamento actualizado exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Apartamento actualizado exitosamente"
+                                        },
+                                        "apartment": {
+                                            "$ref": "#/components/schemas/Apartment"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Apartamento no encontrado"
+                    },
+                    "400": {
+                        "description": "Datos inválidos"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Apartments"
+                ],
+                "summary": "Eliminar un apartamento",
+                "description": "Elimina un apartamento basado en su apartment_id.",
+                "operationId": "35670f9bf0e9b91bfdd7c47480fb568f",
+                "parameters": [
+                    {
+                        "name": "apartment_id",
+                        "in": "path",
+                        "description": "apartment_id del apartamento a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Test-101"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Apartamento eliminado exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Apartamento eliminado exitosamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Apartamento no encontrado"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/availabilities": {
+            "get": {
+                "tags": [
+                    "Availability"
+                ],
+                "summary": "Obtener la lista de Disponibilidad",
+                "operationId": "bef6eede666969b8e0b8e2ae2c6f83fa",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Availability"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error del servidor"
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Iniciar sesión",
+                "description": "Permite al usuario iniciar sesión y recibir un token de acceso.",
+                "operationId": "loginUser",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "user@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Inicio de sesión exitoso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token": {
+                                            "type": "string",
+                                            "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                                        },
+                                        "user": {
+                                            "$ref": "#/components/schemas/User"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Credenciales incorrectas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Credenciales incorrectas"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Obtener el usuario autenticado",
+                "description": "Retorna los detalles del usuario que ha iniciado sesión.",
+                "operationId": "getAuthenticatedUser",
+                "responses": {
+                    "200": {
+                        "description": "Usuario obtenido exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autorizado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No autorizado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Cerrar sesión (Logout)",
+                "description": "Revoca el token actual del usuario autenticado.",
+                "operationId": "ad65cbbd4e9f201619eae184a5961a98",
+                "responses": {
+                    "200": {
+                        "description": "Sesión cerrada correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Sesión cerrada correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autorizado. El token no es válido o ha expirado."
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Apartment": {
+                "title": "Apartment",
+                "description": "Modelo de apartamento",
+                "properties": {
+                    "apartament_id": {
+                        "description": "ID del apartamento",
+                        "type": "string"
+                    },
+                    "level": {
+                        "description": "Level",
+                        "type": "integer"
+                    },
+                    "price": {
+                        "description": "Precio del apartamento",
+                        "type": "number"
+                    },
+                    "total_amount": {
+                        "description": "total amount",
+                        "type": "number"
+                    },
+                    "comments": {
+                        "description": "comments",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Availability": {
+                "title": "Availability",
+                "description": "Modelo de Availability",
+                "properties": {
+                    "id": {
+                        "description": "ID del Availability",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "name Availability",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "John Doe"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "user@example.com"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "sanctum": {
+                "type": "http",
+                "description": "Utiliza un token JWT para la autenticación",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Apartments",
+            "description": "Apartments"
+        },
+        {
+            "name": "Availability",
+            "description": "Availability"
+        },
+        {
+            "name": "Auth",
+            "description": "Auth"
+        }
+    ]
+}
