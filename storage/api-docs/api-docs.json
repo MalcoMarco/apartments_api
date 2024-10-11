@@ -34,7 +34,7 @@
                         "required": false,
                         "schema": {
                             "type": "string",
-                            "example": "Test-101"
+                            "example": ""
                         }
                     },
                     {
