@@ -832,7 +832,7 @@
                                     "date": {
                                         "description": "date reservation",
                                         "type": "string",
-                                        "example": "06/10/2023"
+                                        "example": "2023-10-06"
                                     },
                                     "name": {
                                         "description": "name customer",

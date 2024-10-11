@@ -146,7 +146,7 @@ class ReservationController extends Controller
      *         required=true,
      *         @OA\JsonContent(
      *          required={"date", "name", "card_id", "address", "telephone","email","currancy_exchange_rate"},
-     *           @OA\Property( property="date", type="string", example="06/10/2023", description="date reservation" ),
+     *           @OA\Property( property="date", type="string", example="2023-10-06", description="date reservation" ),
      *           @OA\Property( property="name", type="string", example="Michael Jackson", description="name customer" ),
      *           @OA\Property( property="card_id",  type="string", example="99999999", description="ID card" ),
      *           @OA\Property( property="address", type="string", example="Avenida xxx 4500 - Tampa", description="address" ),
@@ -172,6 +172,7 @@ class ReservationController extends Controller
     public function update(Request $request, Reservation $reservation)
     {
         $validated = $request->validate([
+            'date' => 'required|date|before_or_equal:today|date_format:Y-m-d',
             'name' => 'required|string|max:255',
             'card_id' => 'required|string|max:255',
             'address' => 'required|string|max:255',
