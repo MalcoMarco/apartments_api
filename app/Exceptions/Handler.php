@@ -12,6 +12,8 @@ use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Database\QueryException;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
+
 class Handler extends ExceptionHandler
 {
     /**
@@ -98,6 +100,14 @@ class Handler extends ExceptionHandler
                 ], $e->getStatusCode());
             }
         });
+        /*$this->renderable(function (RouteNotFoundException $e, Request $request) {
+            if ($request->is('api/*')) {
+                return response()->json([
+                    'message' => $e->getMessage(),
+                    'error' => 404
+                ], 404);
+            }
+        });*/
 
         //para cualquier otra excepción que no hayas considerado:
         $this->renderable(function (Throwable $e, Request $request) {

@@ -604,6 +604,348 @@
                     }
                 ]
             }
+        },
+        "/api/reservations": {
+            "get": {
+                "tags": [
+                    "Reservation"
+                ],
+                "summary": "Obtener lista de registros",
+                "description": "Retorna una lista de registros de Reservation",
+                "operationId": "fbc6050d9f7fdb07075d3aaeb157ffa9",
+                "responses": {
+                    "200": {
+                        "description": "Lista de reservaciones",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Reservation"
+                                            }
+                                        },
+                                        "current_page": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "from": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "per_page": {
+                                            "type": "integer",
+                                            "example": 100
+                                        },
+                                        "to": {
+                                            "type": "integer",
+                                            "example": 10
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Reservation"
+                ],
+                "summary": "Crear nueva reservacion",
+                "description": "",
+                "operationId": "01e3d21dc330a31de025203bc142ffa3",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "date",
+                                    "name",
+                                    "card_id",
+                                    "address",
+                                    "telephone",
+                                    "email",
+                                    "currancy_exchange_rate"
+                                ],
+                                "properties": {
+                                    "date": {
+                                        "description": "date reservation",
+                                        "type": "string",
+                                        "example": "06/10/2023"
+                                    },
+                                    "name": {
+                                        "description": "name customer",
+                                        "type": "string",
+                                        "example": "Michael Jackson"
+                                    },
+                                    "card_id": {
+                                        "description": "ID card",
+                                        "type": "string",
+                                        "example": "99999999"
+                                    },
+                                    "address": {
+                                        "description": "address",
+                                        "type": "string",
+                                        "example": "Avenida xxx 4500 - Tampa"
+                                    },
+                                    "telephone": {
+                                        "description": "telephone",
+                                        "type": "string",
+                                        "example": "(900) 52-5555"
+                                    },
+                                    "email": {
+                                        "description": "email",
+                                        "type": "string",
+                                        "example": "xyz@gmail.com"
+                                    },
+                                    "currancy_exchange_rate": {
+                                        "description": "currancy exchange rate",
+                                        "type": "number",
+                                        "example": "56.00"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "reservacion creado exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Reservation creado exitosamente"
+                                        },
+                                        "apartment": {
+                                            "$ref": "#/components/schemas/Reservation"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Datos inválidos"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/reservations/{id}": {
+            "get": {
+                "tags": [
+                    "Reservation"
+                ],
+                "summary": "Obtener los detalles",
+                "description": "Devuelve la información detallada basado en su ID.",
+                "operationId": "getReservationById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id del Reservation",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Reservation"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Reservation no encontrado"
+                    },
+                    "500": {
+                        "description": "Error del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Reservation"
+                ],
+                "summary": "Actualizar reservacion",
+                "description": "Actualizar",
+                "operationId": "02fa683a9f80a0563596fb06685bcbc7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id de reservacion",
+                        "required": true,
+                        "schema": {
+                            "type": "number",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "date",
+                                    "name",
+                                    "card_id",
+                                    "address",
+                                    "telephone",
+                                    "email",
+                                    "currancy_exchange_rate"
+                                ],
+                                "properties": {
+                                    "date": {
+                                        "description": "date reservation",
+                                        "type": "string",
+                                        "example": "06/10/2023"
+                                    },
+                                    "name": {
+                                        "description": "name customer",
+                                        "type": "string",
+                                        "example": "Michael Jackson"
+                                    },
+                                    "card_id": {
+                                        "description": "ID card",
+                                        "type": "string",
+                                        "example": "99999999"
+                                    },
+                                    "address": {
+                                        "description": "address",
+                                        "type": "string",
+                                        "example": "Avenida xxx 4500 - Tampa"
+                                    },
+                                    "telephone": {
+                                        "description": "telephone",
+                                        "type": "string",
+                                        "example": "(900) 52-5555"
+                                    },
+                                    "email": {
+                                        "description": "email",
+                                        "type": "string",
+                                        "example": "xyz@gmail.com"
+                                    },
+                                    "currancy_exchange_rate": {
+                                        "description": "currancy exchange rate",
+                                        "type": "number",
+                                        "example": "56.00"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "reservacion actualizado exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Reservation actualizado exitosamente"
+                                        },
+                                        "apartment": {
+                                            "$ref": "#/components/schemas/Reservation"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Datos inválidos"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Reservation"
+                ],
+                "summary": "Eliminar reservacion",
+                "description": "Eliminar",
+                "operationId": "9b6641e4ded1ff7adfce352d589b85e9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id de reservacion a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "number",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Reservation eliminado exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "reservacion eliminado exitosamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Datos inválidos"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
         }
     },
     "components": {
@@ -650,6 +992,45 @@
                 },
                 "type": "object"
             },
+            "Reservation": {
+                "title": "Reservation",
+                "description": "Modelo de Reservaciones",
+                "properties": {
+                    "id": {
+                        "description": "ID",
+                        "type": "number"
+                    },
+                    "date": {
+                        "description": "date reservation",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "name customer",
+                        "type": "string"
+                    },
+                    "card_id": {
+                        "description": "ID card",
+                        "type": "string"
+                    },
+                    "address": {
+                        "description": "address",
+                        "type": "string"
+                    },
+                    "telephone": {
+                        "description": "telephone",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "email",
+                        "type": "string"
+                    },
+                    "currancy_exchange_rate": {
+                        "description": "currancy exchange rate",
+                        "type": "number"
+                    }
+                },
+                "type": "object"
+            },
             "User": {
                 "properties": {
                     "id": {
@@ -689,6 +1070,10 @@
         {
             "name": "Auth",
             "description": "Auth"
+        },
+        {
+            "name": "Reservation",
+            "description": "Reservation"
         }
     ]
 }

@@ -112,12 +112,6 @@ class ApartmentController extends Controller
         return response()->json($apartments);
     }
 
-
-    public function create()
-    {
-        //
-    }
-
     /**
      * @OA\Post(
      *     path="/api/apartments",
