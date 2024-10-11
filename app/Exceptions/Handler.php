@@ -110,14 +110,14 @@ class Handler extends ExceptionHandler
         });*/
 
         //para cualquier otra excepción que no hayas considerado:
-        $this->renderable(function (Throwable $e, Request $request) {
+        /*$this->renderable(function (Throwable $e, Request $request) {
             if ($request->is('api/*')) {
                 return response()->json([
                     'message' => $e->getMessage(),
                     'error' => 500
                 ], 500);
             }
-        });
+        });*/
 
     }
 }

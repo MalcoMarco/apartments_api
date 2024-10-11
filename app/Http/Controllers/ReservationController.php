@@ -49,7 +49,7 @@ class ReservationController extends Controller
      *         required=true,
      *         @OA\JsonContent(
      *          required={"date", "name", "card_id", "address", "telephone","email","currancy_exchange_rate"},
-     *           @OA\Property( property="date", type="string", example="06/10/2023", description="date reservation" ),
+     *           @OA\Property( property="date", type="string", example="2024-10-01", description="date reservation format yyyy-MM-dd" ),
      *           @OA\Property( property="name", type="string", example="Michael Jackson", description="name customer" ),
      *           @OA\Property( property="card_id",  type="string", example="99999999", description="ID card" ),
      *           @OA\Property( property="address", type="string", example="Avenida xxx 4500 - Tampa", description="address" ),
@@ -63,7 +63,7 @@ class ReservationController extends Controller
      *         description="reservacion creado exitosamente",
      *         @OA\JsonContent(
      *           @OA\Property(property="message", type="string", example="Reservation creado exitosamente"),
-     *           @OA\Property(property="apartment", type="object", ref="#/components/schemas/Reservation"),
+     *           @OA\Property(property="data", type="object", ref="#/components/schemas/Reservation"),
      *         )
      *     ),
      *     @OA\Response(
@@ -74,7 +74,22 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'date' => 'required|date|before_or_equal:today|date_format:Y-m-d',
+            'name' => 'required|string|max:255',
+            'card_id' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'telephone' => 'required|string|max:255',
+            'email' => 'required|string|email|max:20',
+            'currancy_exchange_rate' => 'required|numeric|',            
+        ]);
+    
+        $item = Reservation::create($validated);
+    
+        return response()->json([
+            "message"=>"Reservation creado exitosamente", 
+            "data"=>$item
+        ],201);
     }
 
     /**
@@ -107,9 +122,9 @@ class ReservationController extends Controller
      *     )
      * )
      */
-    public function show(Reservation $Reservation)
+    public function show(Reservation $reservation)
     {
-        //
+        return response()->json($reservation, 200);
     }
 
 
@@ -144,8 +159,8 @@ class ReservationController extends Controller
      *         response=201,
      *         description="reservacion actualizado exitosamente",
      *         @OA\JsonContent(
-     *           @OA\Property(property="message", type="string", example="Reservation actualizado exitosamente"),
-     *           @OA\Property(property="apartment", type="object", ref="#/components/schemas/Reservation"),
+     *           @OA\Property(property="message", type="string", example="Datos actualizado exitosamente"),
+     *           @OA\Property(property="data", type="object", ref="#/components/schemas/Reservation"),
      *         )
      *     ),
      *     @OA\Response(
@@ -154,9 +169,21 @@ class ReservationController extends Controller
      *     )
      * )
      */
-    public function update(Request $request, Reservation $Reservation)
+    public function update(Request $request, Reservation $reservation)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'card_id' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'telephone' => 'required|string|max:255',
+            'email' => 'required|string|email|max:20',
+            'currancy_exchange_rate' => 'required|numeric|',            
+        ]);
+        $reservation->update($validated);
+        return response()->json([
+            "message"=>"Datos actualizados exitosamente", 
+            "data"=>$reservation
+        ],201);
     }
 
     /**

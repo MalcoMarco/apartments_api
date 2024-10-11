@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  *     title="Reservation",
  *     description="Modelo de Reservaciones",
  *     @OA\Property( property="id", type="number", description="ID" ),
- *     @OA\Property( property="date", type="string", description="date reservation" ),
+ *     @OA\Property( property="date", type="string", description="date reservation, format yyyy-MM-dd" ),
  *     @OA\Property( property="name", type="string", description="name customer" ),
  *     @OA\Property( property="card_id",  type="string", description="ID card" ),
  *     @OA\Property( property="address", type="string", description="address" ),
@@ -24,6 +24,7 @@ class Reservation extends Model
 {
     use HasFactory;
     protected $fillable = [
+        "date",
         "name",
         "card_id",
         "address",

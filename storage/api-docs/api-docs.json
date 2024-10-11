@@ -681,9 +681,9 @@
                                 ],
                                 "properties": {
                                     "date": {
-                                        "description": "date reservation",
+                                        "description": "date reservation format yyyy-MM-dd",
                                         "type": "string",
-                                        "example": "06/10/2023"
+                                        "example": "2024-10-01"
                                     },
                                     "name": {
                                         "description": "name customer",
@@ -732,7 +732,7 @@
                                             "type": "string",
                                             "example": "Reservation creado exitosamente"
                                         },
-                                        "apartment": {
+                                        "data": {
                                             "$ref": "#/components/schemas/Reservation"
                                         }
                                     },
@@ -879,9 +879,9 @@
                                     "properties": {
                                         "message": {
                                             "type": "string",
-                                            "example": "Reservation actualizado exitosamente"
+                                            "example": "Datos actualizado exitosamente"
                                         },
-                                        "apartment": {
+                                        "data": {
                                             "$ref": "#/components/schemas/Reservation"
                                         }
                                     },
@@ -1001,7 +1001,7 @@
                         "type": "number"
                     },
                     "date": {
-                        "description": "date reservation",
+                        "description": "date reservation, format yyyy-MM-dd",
                         "type": "string"
                     },
                     "name": {
