@@ -97,11 +97,11 @@ class ApartmentController extends Controller
     {
         $apartments = QueryBuilder::for(Apartment::class)
         ->allowedFilters([
-            'level', 
+            AllowedFilter::exact('level'),
             'apartment_id',
             AllowedFilter::exact('price'),
             AllowedFilter::exact('total_amount'),
-            'availability_id'
+            AllowedFilter::exact('availability_id')
         ])
         ->allowedSorts([
             'level','apartment_id','price','total_amount','availability_id'
