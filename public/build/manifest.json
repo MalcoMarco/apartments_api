@@ -1,0 +1,29 @@
+{
+  "_module.esm-S7NbIldJ.js": {
+    "file": "assets/module.esm-S7NbIldJ.js",
+    "name": "module.esm"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-VsssS-JH.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/apartments.js": {
+    "file": "assets/apartments-schULRXa.js",
+    "name": "apartments",
+    "src": "resources/js/apartments.js",
+    "isEntry": true,
+    "imports": [
+      "_module.esm-S7NbIldJ.js"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-DSqGCVts.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "imports": [
+      "_module.esm-S7NbIldJ.js"
+    ]
+  }
+}
