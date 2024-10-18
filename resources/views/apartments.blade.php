@@ -13,13 +13,13 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/apartments.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/apartments.js'])
 </head>
 
 <body class="font-sans antialiased bg-primary text-white">
-    <main x-data="apartmentData" x-init="initApartments" x-on:orderBy="orderBy" class="min-h-screen pt-2">
+    <main x-data="apartmentData()" x-init="initApartments" x-on:orderBy="orderBy" class="min-h-screen pt-2">
         <div class="flex items-center flex-col mb-6">
-            <div><img src="/images/logo2.png" class="w-auto h-20" alt="logo"></div>
+            <a href="/"><img src="/images/logo2.png" class="w-auto h-20" alt="logo"></a>
             <p>SAIKO BUSINESS & CORPORATE CENTER</p>
         </div>
 

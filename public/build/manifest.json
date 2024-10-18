@@ -1,29 +1,35 @@
 {
-  "_module.esm-S7NbIldJ.js": {
-    "file": "assets/module.esm-S7NbIldJ.js",
-    "name": "module.esm"
+  "_index-OZjHP72d.js": {
+    "file": "assets/index-OZjHP72d.js",
+    "name": "index"
   },
   "resources/css/app.css": {
-    "file": "assets/app-VsssS-JH.css",
+    "file": "assets/app-Dk6vBdWq.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/js/apartments.js": {
-    "file": "assets/apartments-schULRXa.js",
+    "file": "assets/apartments-IhusACbd.js",
     "name": "apartments",
     "src": "resources/js/apartments.js",
     "isEntry": true,
     "imports": [
-      "_module.esm-S7NbIldJ.js"
+      "_index-OZjHP72d.js"
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-DSqGCVts.js",
+    "file": "assets/app-BHb9C86u.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "imports": [
-      "_module.esm-S7NbIldJ.js"
+      "_index-OZjHP72d.js"
     ]
+  },
+  "resources/js/dashboard/index.js": {
+    "file": "assets/index-DmRgP2V0.js",
+    "name": "index",
+    "src": "resources/js/dashboard/index.js",
+    "isEntry": true
   }
 }

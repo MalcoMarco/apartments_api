@@ -14,8 +14,8 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased bg-primary text-white">
-        <main class="grid grid-cols-1 grid-rows-2 md:grid-cols-3 md:grid-flow-row1 gap-4 min-h-screen">
+    <body class="font-sans antialiased bg-primary text-white min-h-screen flex items-center">
+        <main class="grid grid-cols-1 grid-rows-2 md:grid-cols-3 md:grid-rows-1 gap-4 w-full">
             <div class="flex justify-center items-center flex-col px-4">
                 <img src="/images/logo.png" class="mb-9 w-auto h-60" alt="saiko">
 

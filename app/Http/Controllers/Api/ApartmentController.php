@@ -149,7 +149,7 @@ class ApartmentController extends Controller
     {
         $validated = $request->validate([
             'level' => 'required|integer',
-            'apartment_id' => 'required|string|max:10',
+            'apartment_id' => 'required|string|max:10|unique:apartments,apartment_id',
             'price' => 'required|numeric',
             'total_amount' => 'required|numeric',
             'availability_id' => 'required|integer',
