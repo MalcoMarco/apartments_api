@@ -17,6 +17,8 @@
     },
     "dependencies": {
         "chart.js": "^4.4.5",
-        "flowbite": "^2.5.2"
+        "flowbite": "^2.5.2",
+        "sweetalert2": "^11.14.3",
+        "toastr": "^2.1.4"
     }
 }

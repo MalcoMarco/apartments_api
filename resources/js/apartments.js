@@ -86,7 +86,20 @@ Alpine.data("apartmentData", () => ({
             this.getApartments();
         }
     },
-
+    createForm() {
+        this.modalTitle ="Crear Nuevo Apartment:";
+        this.apartmentItem = {
+            id: null,
+            level: 1,
+            apartment_id: "",
+            price: "",
+            total_amount: "",
+            availability_id: null,
+            comments: null,
+        };
+        this.isformCreate = true
+        modal.show();
+    },
     editForm(itemParams) {
         this.modalTitle ="Editar: "+itemParams.apartment_id;
         this.apartmentItem = { ...itemParams };
@@ -94,13 +107,45 @@ Alpine.data("apartmentData", () => ({
         modal.show();
     },
     storeForm(){
-        axios.post(`/dashboard/apartments/${this.apartmentItem.apartment_id}`,this.apartmentItem)
+        let request ={
+            method: 'post',
+            url: "/dashboard/apartments",
+            data: {...this.apartmentItem }
+          }
+        let url = "/dashboard/apartments"
+        if (!this.isformCreate) {//url for update
+            request.method = 'put'
+            request.url += `/${this.apartmentItem.apartment_id}`
+        }
+        axios(request)
         .then((res)=>{
+            toastr.success(res.data.message);
             this.getApartments()
             modal.hide();
         }).catch((err)=>{
-
+            toastr.warning(err.response.data.message,"Error",{timeOut: 8000});
         })
+    },
+    deleteApartment(apartment_id){
+        Swal.fire({
+            title: "Estas Seguro?",
+            text: "Se eliminara el apartment: "+apartment_id,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Sí, Eliminar!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`/dashboard/apartments/${apartment_id}`)
+                .then((res)=>{
+                    toastr.success(res.data.message);
+                    this.getApartments()
+                }).catch((err)=>{
+                    toastr.warning(err.response.data.message,"Error");
+                })
+            }
+          });
     },
     closeForm(){
         modal.hide();

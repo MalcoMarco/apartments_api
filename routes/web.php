@@ -28,7 +28,10 @@ Route::get('/apartments', function () {
 Route::middleware(['auth', 'verified'])->group(function () { 
     Route::get('/dashboard', [AdminController::class,'index'])->name('dashboard');
     Route::get('/dashboard/apartments', [AdminController::class,'apartments'])->name('dashboard.apartments');
-    Route::post('/dashboard/apartments/{apartment_id}', [ApartmentController::class, 'update']);
+    //apis-apartment
+    Route::put('/dashboard/apartments/{apartment_id}', [ApartmentController::class, 'update']);
+    Route::post('/dashboard/apartments', [ApartmentController::class, 'store']);
+    Route::delete('/dashboard/apartments/{apartment_id}', [ApartmentController::class, 'destroy']);
 });
 
 Route::middleware('auth')->group(function () {
