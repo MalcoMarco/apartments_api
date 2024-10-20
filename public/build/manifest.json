@@ -4,12 +4,12 @@
     "name": "index"
   },
   "resources/css/app.css": {
-    "file": "assets/app-Dk6vBdWq.css",
+    "file": "assets/app-ablVW5gG.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/js/apartments.js": {
-    "file": "assets/apartments-IhusACbd.js",
+    "file": "assets/apartments-DYPVsYz0.js",
     "name": "apartments",
     "src": "resources/js/apartments.js",
     "isEntry": true,
@@ -18,12 +18,15 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-BHb9C86u.js",
+    "file": "assets/app-C-RAvU2A.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "imports": [
       "_index-OZjHP72d.js"
+    ],
+    "css": [
+      "assets/app-DhA00dbO.css"
     ]
   },
   "resources/js/dashboard/index.js": {
