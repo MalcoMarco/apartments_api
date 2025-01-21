@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Apartment;
 use App\Models\Availability;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
-
+use Barryvdh\DomPDF\PDF;
 class AdminController extends Controller
 {
     public function index (){
@@ -69,6 +70,19 @@ class AdminController extends Controller
     function apartments(Request $request) {
         $disponibilidades = Availability::get();
         return view('dashboard.apartmets',compact('disponibilidades'));
+    }
+    
+    function reservations(Request $request) {
+        $reservations = Reservation::paginate();
+        return view('dashboard.reservations',compact('reservations'));
+    }
+
+    function reservationpdf(Request $request) {
+        //$reservations = Reservation::all();
+        $pdf = app('dompdf.wrapper');
+        $pdf->loadView('dashboard.reservationpdf');
+        return $pdf->download('reservations.pdf');
+        return view('dashboard.reservationpdf');
     }
     
 }

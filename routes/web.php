@@ -32,6 +32,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/dashboard/apartments/{apartment_id}', [ApartmentController::class, 'update']);
     Route::post('/dashboard/apartments', [ApartmentController::class, 'store']);
     Route::delete('/dashboard/apartments/{apartment_id}', [ApartmentController::class, 'destroy']);
+
+    Route::get('/dashboard/reservations', [AdminController::class,'reservations'])->name('dashboard.reservations');
+    Route::get('/dashboard/reservation-pdf', [AdminController::class,'reservationpdf'])->name('dashboard.reservationpdf');
 });
 
 Route::middleware('auth')->group(function () {
