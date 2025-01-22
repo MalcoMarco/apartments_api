@@ -35,6 +35,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/dashboard/reservations', [AdminController::class,'reservations'])->name('dashboard.reservations');
     Route::get('/dashboard/reservation-pdf', [AdminController::class,'reservationpdf'])->name('dashboard.reservationpdf');
+
+    Route::get('/dashboard/plan-pago', [AdminController::class,'planPago'])->name('dashboard.planpago');
 });
 
 Route::middleware('auth')->group(function () {

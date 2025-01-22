@@ -16,7 +16,7 @@
         {{ $head ?? '' }}
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+        <div class="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
@@ -32,9 +32,11 @@
             <main>
                 {{ $slot }}
             </main>
-            <div class="bg-gray-900 text-white pt-1">
+            <div class="bg-gray-900 text-white pt-1 mt-auto">
                 @include("layouts.footer")
             </div>
         </div>
+
+        {{ $scripts ?? '' }}
     </body>
 </html>

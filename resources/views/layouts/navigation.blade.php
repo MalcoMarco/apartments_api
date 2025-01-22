@@ -18,8 +18,8 @@
                     <x-nav-link :href="route('dashboard.apartments')" :active="request()->routeIs('dashboard.apartments')">
                         {{ __('Módulos') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard.reservations')" :active="request()->routeIs('dashboard.reservations')">
-                        {{ __('Reservations') }}
+                    <x-nav-link :href="route('dashboard.planpago')" :active="request()->routeIs('dashboard.planpago')">
+                        {{ __('Plan pago') }}
                     </x-nav-link>
                     <x-nav-link href="/api/documentation" target="_blank" >
                         {{ __('Api Swagger') }}

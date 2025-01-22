@@ -1,3 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+input:focus-visible,textarea:focus-visible {
+    outline-offset: 0px;
+    outline: none;
+}
+.form-label{
+    @apply block mb-2 text-sm font-medium text-gray-900 dark:text-white;
+}
+.form-input{
+    @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+}
+.form-disable{
+    @apply  bg-gray-200 border-gray-300 cursor-not-allowed
+}
+.card{
+    @apply block p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700;
+}
+
+.table-operacion {
+    border-collapse: collapse;
+}
+
+.table-bordered th,
+.table-bordered td {
+    padding: 5px;
+    border: 1px solid #ddd;
+}
+
+.table-operacion th {
+    text-align: left;
+}
+.table-operacion tr td:nth-child(1) {
+    padding-right: 15px;
+}
+.table-operacion tr td:nth-child(2) {
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
+    min-width: 55px;
+    max-width: 60px;
+}
+
+.table-operacion tr td:nth-child(3) {
+    max-width: 250px;
+}

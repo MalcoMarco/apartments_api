@@ -84,5 +84,9 @@ class AdminController extends Controller
         return $pdf->download('reservations.pdf');
         return view('dashboard.reservationpdf');
     }
+
+    function planPago() {
+        return view('dashboard.planpago');
+    }
     
 }
