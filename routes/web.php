@@ -6,7 +6,7 @@ use App\Http\Controllers\Api\PlanPagoController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Availability;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Artisan;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,6 +54,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::get('/clear', function () {
+    // Ejecutar los comandos de Artisan
+    Artisan::call('config:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    Artisan::call('route:clear');
+
+    return "¡Cachés limpiadas correctamente!";
 });
 
 require __DIR__.'/auth.php';
