@@ -605,6 +605,301 @@
                 ]
             }
         },
+        "/api/calcular-cuotas": {
+            "post": {
+                "tags": [
+                    "PlanPago"
+                ],
+                "summary": "Calcular cuotas de un plan de pago",
+                "operationId": "9e4f1f0b3ef78f4343cd764cfe367df7",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "valor_propiedad",
+                                    "reserva",
+                                    "porcentaje_saldo",
+                                    "porcentaje_monto",
+                                    "numero_cuotas",
+                                    "fecha_entrega"
+                                ],
+                                "properties": {
+                                    "valor_propiedad": {
+                                        "description": "Valor de la propiedad",
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 7000000
+                                    },
+                                    "reserva": {
+                                        "description": "Monto de la reserva",
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 20000
+                                    },
+                                    "porcentaje_saldo": {
+                                        "description": "Porcentaje del saldo",
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 15
+                                    },
+                                    "porcentaje_monto": {
+                                        "description": "Porcentaje del monto",
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 30
+                                    },
+                                    "numero_cuotas": {
+                                        "description": "Número de cuotas",
+                                        "type": "integer",
+                                        "example": 12
+                                    },
+                                    "fecha_entrega": {
+                                        "description": "Fecha de entrega",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2023-12-01"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Cálculo de cuotas exitoso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "inicial": {
+                                            "description": "Monto inicial",
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 18000
+                                        },
+                                        "monto_cuota_mensual": {
+                                            "description": "Monto de la cuota mensual",
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 6666.67
+                                        },
+                                        "contra_entrega": {
+                                            "description": "Monto contra entrega",
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 20000
+                                        },
+                                        "lista_cuotas": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "numero": {
+                                                        "description": "Número de la cuota",
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "fecha": {
+                                                        "description": "Fecha de la cuota",
+                                                        "type": "string",
+                                                        "format": "date",
+                                                        "example": "2024-01-01"
+                                                    },
+                                                    "monto": {
+                                                        "description": "Monto de la cuota",
+                                                        "type": "number",
+                                                        "format": "float",
+                                                        "example": 6666.67
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Solicitud inválida"
+                    }
+                }
+            }
+        },
+        "/api/plan-pago": {
+            "post": {
+                "tags": [
+                    "PlanPago"
+                ],
+                "summary": "Crear un nuevo plan de pago",
+                "operationId": "e5f09916a0a0c734d726c09e4869fdb0",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "valor_propiedad",
+                                    "reserva",
+                                    "porcentaje_saldo",
+                                    "porcentaje_monto",
+                                    "numero_cuotas",
+                                    "fecha_entrega",
+                                    "inicial",
+                                    "monto_cuota_mensual",
+                                    "contra_entrega",
+                                    "lista_cuotas",
+                                    "asesor",
+                                    "fecha_envio_plan_pago"
+                                ],
+                                "properties": {
+                                    "valor_propiedad": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 100000
+                                    },
+                                    "reserva": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 5000
+                                    },
+                                    "porcentaje_saldo": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 20
+                                    },
+                                    "porcentaje_monto": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 80
+                                    },
+                                    "numero_cuotas": {
+                                        "type": "number",
+                                        "format": "integer",
+                                        "example": 12
+                                    },
+                                    "fecha_entrega": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2023-12-31"
+                                    },
+                                    "inicial": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 20000
+                                    },
+                                    "monto_cuota_mensual": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 5000
+                                    },
+                                    "contra_entrega": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 30000
+                                    },
+                                    "lista_cuotas": {
+                                        "type": "string",
+                                        "example": "Lista de cuotas en formato JSON:[{numero:1,fecha:'2024-01-01',monto:5000},{numero:2,fecha:'2024-02-01',monto:5000}]"
+                                    },
+                                    "asesor": {
+                                        "type": "string",
+                                        "example": "Juan Perez"
+                                    },
+                                    "cliente": {
+                                        "type": "string",
+                                        "example": "Maria Lopez"
+                                    },
+                                    "fecha_envio_plan_pago": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2023-10-01"
+                                    },
+                                    "nombre_proyecto": {
+                                        "type": "string",
+                                        "example": "Proyecto XYZ"
+                                    },
+                                    "descripcion": {
+                                        "type": "string",
+                                        "example": "Descripción del proyecto"
+                                    },
+                                    "metros_construccion": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 120.5
+                                    },
+                                    "metros_solar": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 200.75
+                                    },
+                                    "piso": {
+                                        "type": "string",
+                                        "example": "3"
+                                    },
+                                    "modulo": {
+                                        "type": "string",
+                                        "example": "A"
+                                    },
+                                    "parqueo": {
+                                        "type": "string",
+                                        "example": "2"
+                                    },
+                                    "mantenimiento": {
+                                        "type": "string",
+                                        "example": "1000"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Plan de pago creado exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Plan de pago creado exitosamente"
+                                        },
+                                        "plan_pago": {
+                                            "$ref": "#/components/schemas/PlanPago"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error de validación",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Datos de entrada no válidos"
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/reservations": {
             "get": {
                 "tags": [
@@ -992,6 +1287,99 @@
                 },
                 "type": "object"
             },
+            "PlanPago": {
+                "title": "PlanPago",
+                "description": "Modelo que representa un plan de pago",
+                "properties": {
+                    "valor_propiedad": {
+                        "description": "Valor de la propiedad",
+                        "type": "number"
+                    },
+                    "reserva": {
+                        "description": "Monto de la reserva",
+                        "type": "number"
+                    },
+                    "porcentaje_saldo": {
+                        "description": "Porcentaje del saldo",
+                        "type": "number"
+                    },
+                    "porcentaje_monto": {
+                        "description": "Porcentaje del monto",
+                        "type": "number"
+                    },
+                    "numero_cuotas": {
+                        "description": "Número de cuotas",
+                        "type": "integer"
+                    },
+                    "fecha_entrega": {
+                        "description": "Fecha de entrega",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "inicial": {
+                        "description": "Monto inicial",
+                        "type": "number"
+                    },
+                    "monto_cuota_mensual": {
+                        "description": "Monto de la cuota mensual",
+                        "type": "number"
+                    },
+                    "contra_entrega": {
+                        "description": "Monto contra entrega",
+                        "type": "number"
+                    },
+                    "lista_cuotas": {
+                        "description": "Lista de cuotas",
+                        "type": "string"
+                    },
+                    "asesor": {
+                        "description": "Nombre del asesor",
+                        "type": "string"
+                    },
+                    "cliente": {
+                        "description": "Nombre del cliente",
+                        "type": "string"
+                    },
+                    "fecha_envio_plan_pago": {
+                        "description": "Fecha de envío del plan de pago",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "nombre_proyecto": {
+                        "description": "Nombre del proyecto",
+                        "type": "string"
+                    },
+                    "descripcion": {
+                        "description": "Descripción del plan de pago",
+                        "type": "string"
+                    },
+                    "metros_construccion": {
+                        "description": "Metros de construcción",
+                        "type": "number"
+                    },
+                    "metros_solar": {
+                        "description": "Metros del solar",
+                        "type": "number"
+                    },
+                    "piso": {
+                        "description": "Piso del inmueble",
+                        "type": "string"
+                    },
+                    "modulo": {
+                        "description": "Módulo del inmueble",
+                        "type": "string"
+                    },
+                    "parqueo": {
+                        "description": "Parqueo del inmueble",
+                        "type": "string"
+                    },
+                    "mantenimiento": {
+                        "description": "Costo de mantenimiento",
+                        "type": "number"
+                    }
+                },
+                "type": "object"
+            },
             "Reservation": {
                 "title": "Reservation",
                 "description": "Modelo de Reservaciones",
@@ -1070,6 +1458,10 @@
         {
             "name": "Auth",
             "description": "Auth"
+        },
+        {
+            "name": "PlanPago",
+            "description": "PlanPago"
         },
         {
             "name": "Reservation",

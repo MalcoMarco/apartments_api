@@ -18,7 +18,7 @@
                     <x-nav-link :href="route('dashboard.apartments')" :active="request()->routeIs('dashboard.apartments')">
                         {{ __('Módulos') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard.planpago')" :active="request()->routeIs('dashboard.planpago')">
+                    <x-nav-link :href="route('dashboard.planPagosList')" :active="request()->routeIs('dashboard.planPagosList')">
                         {{ __('Plan pago') }}
                     </x-nav-link>
                     <x-nav-link href="/api/documentation" target="_blank" >

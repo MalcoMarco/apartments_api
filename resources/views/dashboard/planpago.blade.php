@@ -1,42 +1,16 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Plan de Pago Reservación') }}
+            {{ isset($planpago) ? 'Editar:': 'Crear:'}} {{ __('Plan de Pago Reservación') }}
         </h2>
     </x-slot>
-    <x-slot name="scripts">
-        <script>
-            function calcularcuotas(){
-                let valor_propiedad = document.getElementById('valor_propiedad').value;
-                let reserva = document.getElementById('reserva').value;
-                let inicial = document.getElementById('inicial');
-                let cuota_mensual = document.getElementById('cuota_mensual');
-                let contra_entrega = document.getElementById('contra_entrega');
-                let tobdy_cuotas = document.getElementById('tobdy_cuotas');
-                const numero_cuotas = 20;
-                let fecha = new Date();
-                let fecha_cuota = new Date(fecha)
 
-                inicial.value = (valor_propiedad - reserva) * 0.15;
-                cuota_mensual.value = (valor_propiedad  * 0.30)/numero_cuotas;
-                contra_entrega.value = valor_propiedad - reserva - inicial.value - (cuota_mensual.value * numero_cuotas);
-                let tbodyString = '';
-                for (let index = 0; index < numero_cuotas; index++) {
-                    fecha_cuota.setMonth(fecha_cuota.getMonth() + 1);                    
-                    tbodyString += `<tr>
-                        <td>${index + 1}</td>
-                        <td>$ ${cuota_mensual.value}</td>
-                        <td>${fecha_cuota.toLocaleDateString()}</td>
-                    </tr>`;
-                }
-                tobdy_cuotas.innerHTML = tbodyString;
-            }
-        </script>
+    <x-slot name="head">
+        @vite(['resources/js/planPago.js'])
     </x-slot>
-
-    <div class="py-12">
+    <div x-data="planPago" x-init="initData({{$planpago??null}})" class="py-12">
         <div class="max-w-full mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <form @submit.prevent="guardarPlanPago" class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <h2 class="text-center text-2xl font-bold text-white bg-blue-900 mb-4 rounded-s">
                         PLAN DE PAGO
@@ -44,43 +18,43 @@
 
                     <div class="grid gap-6 mb-6 md:grid-cols-3">
                         <div>
-                            <label for="first_name" class="form-label">NOMBRE DEL PROYECTO:</label>
-                            <input type="text" id="first_name" class="form-input" value="SAIKO BUSINESS & CORPORATE CENTER" required />
+                            <label class="form-label">NOMBRE DEL PROYECTO*</label>
+                            <input x-model="nombre_proyecto" type="text" class="form-input" required/>
                         </div>
                         <div class="md:col-span-2">
-                            <label for="last_name" class="form-label">DESCRIPCIÓN DEL PRODUCTO:</label>
-                            <input type="text" id="last_name" class="form-input" value="LOCAL COMERCIAL" required />
+                            <label class="form-label">DESCRIPCIÓN DEL PRODUCTO:</label>
+                            <input x-model="descripcion" type="text" class="form-input"/>
                         </div>
                                        
                     </div>
                     <div class="grid lg:grid-cols-6 md:grid-cols-3 gap-6 mb-6">
                         <div>
-                            <label for="company" class="form-label">METROS ² CONSTRUCCIÓN:</label>
-                            <input type="number" id="company" class="form-input" value="40" />
+                            <label class="form-label">METROS ² CONSTRUCCIÓN*</label>
+                            <input x-model.number="metros_construccion" type="number" class="form-input" required/>
                         </div>  
                         <div>
-                            <label for="website" class="form-label">METROS ² SOLAR: </label>
-                            <input type="text" id="website" class="form-input"  />
+                            <label class="form-label">METROS ² SOLAR: </label>
+                            <input x-model="metros_solar" type="number" class="form-input"/>
                         </div>
                         <div>
-                            <label for="phone" class="form-label">PISO</label>
-                            <input type="text" id="website" class="form-input"  />
+                            <label class="form-label">PISO</label>
+                            <input x-model="piso" type="text" class="form-input"/>
                         </div>
                         <div>
-                            <label for="phone" class="form-label">MODULO</label>
-                            <input type="text" id="website" class="form-input"  />
+                            <label class="form-label">MODULO</label>
+                            <input x-model="modulo" type="text" class="form-input"/>
                         </div>
                         <div>
-                            <label for="phone" class="form-label">PARQUEO</label>
-                            <input type="text" id="website" class="form-input"  />
+                            <label class="form-label">PARQUEO</label>
+                            <input x-model="parqueo" type="text" class="form-input"/>
                         </div>
                         <div>
-                            <label for="phone" class="form-label">MANTENIMIENTO</label>
-                            <input type="text" id="website" class="form-input"  />
+                            <label class="form-label">MANTENIMIENTO</label>
+                            <input x-model="mantenimiento" type="text" class="form-input"/>
                         </div>
                         <div>
-                            <label for="phone" class="form-label">FECHA ENTREGA</label>
-                            <input type="date" id="website" class="form-input"  />
+                            <label class="form-label">FECHA ENTREGA*</label>
+                            <input x-model="fecha_entrega" type="date" class="form-input" required/>
                         </div> 
                     </div>
                     <h2 class="text-center text-2xl font-bold text-white bg-blue-900 mb-4 rounded-s">
@@ -93,7 +67,7 @@
                                 <td style="background-color: #ccccff;">A</td>
                                 <td>
                                     <div class="flex justify-end w-full">
-                                        <input id="valor_propiedad" type="text" class="form-input text-end max-w-[200px]" placeholder="000.00"/>
+                                        <input x-model="valor_propiedad" type="text" class="form-input text-end max-w-[200px]" placeholder="000.00" required/>
                                     </div>
                                 </td>
                                 <td>A: Monto total</td>
@@ -103,7 +77,7 @@
                                 <td style="background-color: #99ccff;">B</td>
                                 <td>
                                     <div class="flex justify-end w-full">
-                                        <input id="reserva" type="text" class="form-input text-end max-w-[200px]" placeholder="000.00"/>
+                                        <input x-model="reserva" id="reserva" value="2000" type="text" class="form-input text-end max-w-[200px]" placeholder="000.00" required/>
                                     </div>
                                 </td>
                                 <td>B: Monto de la reserva USD 2000</td>
@@ -113,36 +87,43 @@
                                 <td style="background-color: #33cccc">C</td>
                                 <td>
                                     <div class="flex justify-end w-full">
-                                        <input id="inicial" value="00.00" type="text" class="form-input form-disable text-end max-w-[200px]" disabled/>
+                                        <input x-model="inicial" id="inicial" value="00.00" type="text" class="form-input form-disable text-end max-w-[200px]" disabled required/>
                                     </div>
                                 </td>
-                                <td>C: 15% del Saldo - reserva = 15% x (A-B)</td>
+                                <td>
+                                   <div> C: <input type="number" x-model="porcentaje_saldo" class="pb-0 pt-0 max-w-[90px] text-center" placeholder="0" min="1" />  % del Saldo - reserva = <span x-text="porcentaje_saldo"></span> % x (A-B)</div>
+                                </td>
                             </tr>
                             <tr>
                                 <td>MONTO DE LA CUOTA MENSUAL</td>
                                 <td style="background-color: #333399; color:white">D</td>
                                 <td>
                                     <div class="flex justify-end w-full">
-                                        <input id="cuota_mensual" value="000.00" type="text" class="form-input form-disable text-end max-w-[200px]" disabled />
+                                        <input x-model="monto_cuota_mensual" id="cuota_mensual" type="text" class="form-input form-disable text-end max-w-[200px]" disabled />
                                     </div>
                                 </td>
 
-                                <td>D: 30% del Monto total, se paga en 20 cuotas iguales</td>
+                                <td>D: 
+                                    <input type="number" x-model="porcentaje_monto" class="pb-0 pt-0 max-w-[90px] text-center" placeholder="0" min="1" /> % del Monto total, 
+                                    se paga en 
+                                    <input type="number" x-model="numero_cuotas" class="pb-0 pt-0 max-w-[90px] text-center" placeholder="0" min="1" />
+                                    cuotas iguales
+                                </td>
                             </tr>
                             <tr>
                                 <td>CONTRA ENTREGA</td>
                                 <td style="background-color: #333399; color:white">E</td>
                                 <td>
                                     <div class="flex justify-end w-full">
-                                        <input id="contra_entrega" value="000.00" type="text" class="form-input form-disable text-end max-w-[200px]" disabled/>
+                                        <input x-model="contra_entrega" id="contra_entrega" type="text" class="form-input form-disable text-end max-w-[200px]" disabled/>
                                     </div>
                                 </td>
-                                <td>E: El monto a pagar es = A - B - C - (D x 20)</td>
+                                <td>E: El monto a pagar es = A - B - C - (D x <span x-text="numero_cuotas"></span> )</td>
                             </tr>
                         </table>
                     </div>
                     <div class="flex justify-center">
-                        <button onclick="calcularcuotas()" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Calcular Cuotas</button>
+                        <button @click="calcularcuotas" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Calcular Cuotas</button>
                     </div>
 
                     {{-- CUOTAS --}}
@@ -158,12 +139,14 @@
                                     <th>FECHA:</th>
                                 </tr>
                             </thead>
-                            <tbody id="tobdy_cuotas">
-                                <tr>
-                                    <td>1</td>
-                                    <td>00.000,00$</td>
-                                    <td>4/11/2024</td>
-                                </tr>
+                            <tbody>
+                                <template x-for="(cuota, index) in lista_cuotas" :key="index">
+                                    <tr class="text-center">
+                                        <td x-text="index + 1"></td>
+                                        <td x-text="'$ '+cuota.monto"></td>
+                                        <td x-text="cuota.fecha"></td>
+                                    </tr>
+                                </template>
                             </tbody>
                         </table>
                     </div>
@@ -175,26 +158,40 @@
                     <div class="relative overflow-x-auto flex justify-center mb-4">
                         <table class="table-bordered min-w-[570px]">
                             <tr>
-                                <td>CONTRA ENTREGA: </td>
-                                <td>$3.850.000,00 </td>
+                                <td>CONTRA ENTREGA:</td>
+                                <td x-text="formatCurrency(contra_entrega)">$3.850.000,00 </td>
                             </tr>
                             <tr>
                                 <td>ASESOR INMOBILIARIO:</td>
-                                <td></td>
+                                <td> 
+                                    <input x-model="asesor" type="text" class="form-input" required/>
+                                </td>
                             </tr>
                             <tr>
                                 <td>CLIENTE: </td>
-                                <td>JOHN DOE </td>
+                                <td>
+                                    <input x-model="cliente" type="text" class="form-input" required/>
+                                </td>
                             </tr>
                             <tr>
                                 <td>FECHA ENVÍO PLAN DE PAGO: </td>
-                                <td></td>
+                                <td>
+                                    <input x-model="fecha_envio_plan_pago" type="date" class="form-input"/>
+                                </td>
                             </tr>
                         </table>
                     </div>
+                    <div class="flex justify-end">
+                        <button @click="descargarPreview" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                            PDF Preview
+                        </button>
 
+                    </div>
+                    <hr>
+                    <div class="flex justify-center mt-4">
+                        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Guardar Plan de Pago</button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </x-app-layout>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Api\ApartmentController;
+use App\Http\Controllers\Api\PlanPagoController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Availability;
 use Illuminate\Support\Facades\Route;
@@ -36,7 +37,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard/reservations', [AdminController::class,'reservations'])->name('dashboard.reservations');
     Route::get('/dashboard/reservation-pdf', [AdminController::class,'reservationpdf'])->name('dashboard.reservationpdf');
 
+    Route::get('/dashboard/plan-pago-list', [AdminController::class,'planPagosList'])->name('dashboard.planPagosList');
     Route::get('/dashboard/plan-pago', [AdminController::class,'planPago'])->name('dashboard.planpago');
+    Route::post('/dashboard/plan-pago', [PlanPagoController::class,'store'])->name('dashboard.planpago');
+
+    Route::get('/dashboard/api/plan-pago-list', [PlanPagoController::class,'index']);
+
+    Route::get('/dashboard/plan-pago/{planpago}', [AdminController::class,'editPlanpago'])->name('dashboard.planpago.edit');
+    Route::put('/dashboard/plan-pago/{planpago}', [PlanPagoController::class,'updatePlanpago']);
+
+    Route::post('/dashboard/plan-pago-preview', [PlanPagoController::class,'planPagoPreview']);
+    Route::get('/dashboard/plan-pago-preview', [PlanPagoController::class,'planPagoPreview']);
 });
 
 Route::middleware('auth')->group(function () {

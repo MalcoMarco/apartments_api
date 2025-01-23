@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\Api\PlanPagoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,7 @@ Route::middleware('api')->group(function () {
     Route::get('/apartments', [ApartmentController::class, 'index']);
     Route::get('/apartments/{apartment_id}', [ApartmentController::class, 'show']);
     Route::get('/availabilities', [ApartmentController::class, 'availabilities']);
+    Route::post('/calcular-cuotas', [PlanPagoController::class,'calcularCuotas']);
 });
 Route::middleware(['api','auth:sanctum'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
@@ -41,4 +43,6 @@ Route::middleware(['api','auth:sanctum'])->group(function () {
     Route::put('/reservations/{reservation}', [ReservationController::class, 'update']);
     Route::delete('/reservations/{reservation}', [ReservationController::class, 'destroy']);
 
+    Route::get('/plan-pago-list', [PlanPagoController::class,'index']);
+    Route::post('/plan-pago', [PlanPagoController::class,'store']);
 });

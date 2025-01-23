@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Apartment;
 use App\Models\Availability;
+use App\Models\PlanPago;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\PDF;
@@ -82,11 +83,19 @@ class AdminController extends Controller
         $pdf = app('dompdf.wrapper');
         $pdf->loadView('dashboard.reservationpdf');
         return $pdf->download('reservations.pdf');
-        return view('dashboard.reservationpdf');
+        //return view('dashboard.reservationpdf');
     }
 
     function planPago() {
         return view('dashboard.planpago');
     }
+
+    function planPagosList(Request $request) {
+        return view('dashboard.planPagosList');
+    }
     
+    function editPlanpago(Request $request, PlanPago $planpago) {
+        return view('dashboard.planpago',compact('planpago'));
+    }
+
 }
