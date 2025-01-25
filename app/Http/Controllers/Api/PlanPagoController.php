@@ -244,4 +244,12 @@ class PlanPagoController extends Controller
             echo $pdf->stream();
         }, 'reservations.pdf');
     }
+
+    function deletePlanPago(Request $request, PlanPago $planpago) {
+        $planpago->delete();
+        return response()->json([
+            'message' => 'Plan de pago eliminado exitosamente',
+        ]);
+    }
+
 }

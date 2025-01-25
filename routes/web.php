@@ -48,6 +48,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('/dashboard/plan-pago-preview', [PlanPagoController::class,'planPagoPreview']);
     Route::get('/dashboard/plan-pago-preview', [PlanPagoController::class,'planPagoPreview']);
+    Route::delete('/dashboard/plan-pago/{planpago}', [PlanPagoController::class,'deletePlanPago']);
 });
 
 Route::middleware('auth')->group(function () {

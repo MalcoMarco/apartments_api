@@ -205,11 +205,6 @@ Alpine.data("planPago", () => ({
             toastr.error('Error al generar la vista previa del plan de pago.');
         });
     }
-            
-            
-
-
-
 }))
 
 Alpine.data("listPlanPagos", () => ({
@@ -230,7 +225,19 @@ Alpine.data("listPlanPagos", () => ({
         const opciones = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };
         return new Intl.DateTimeFormat('es-ES', opciones).format(new Date(fecha));
     },
-    deleteItem(itemId){
 
-    }
+    deleteItem(itemId){
+        console.log(itemId);
+        
+        axios.delete(`/dashboard/plan-pago/${itemId}`).then((res) => {
+            toastr.success(res.data.message);
+            this.getData();
+        }).catch((error) => {
+            toastr.error(error.response.data.message);
+        });
+    },
+    changePage(page) {
+        this.page = page;
+        this.getData();
+    },
 }))
