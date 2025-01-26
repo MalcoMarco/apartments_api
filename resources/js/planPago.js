@@ -31,7 +31,8 @@ Alpine.data("planPago", () => ({
     asesor:"",
     cliente:"",
     fecha_envio_plan_pago: new Date().toISOString().split('T')[0],
-    
+    terminos:`La reserva aquí señalada estará sujeta a que la suma indicada sea hecha efectiva y su monto acreditado a la cuenta de LA PROMOTORA. Y yo _____________________________________________, anteriormente identificado, DECLARO: Que estoy en pleno conocimiento que los gastos correspondientes a la reserva no son reembolsables en caso de no formalizarse la suscripción del contrato de opción de compra, el cual deberá suscribirse posteriormente al pago del inicial del inmueble, pago que deberá realizarse en un plazo no mayor de 30 días calendarios después del pago de reserva, por lo que entiendo y acepto los términos expuestos en este documento. En la ciudad de Santo Domingo, República Dominicana, a los XX días del mes XX de Dos Mil XX (20XX)`,
+
     initData(data){
         if (!data) {
             return;
@@ -58,6 +59,7 @@ Alpine.data("planPago", () => ({
         this.porcentaje_saldo = data.porcentaje_saldo;
         this.reserva = data.reserva;
         this.valor_propiedad = data.valor_propiedad;
+        this.terminos = data.terminos;
     },
     calcularcuotas(){
         const payload = {
@@ -111,6 +113,7 @@ Alpine.data("planPago", () => ({
             asesor:this.asesor,
             cliente:this.cliente,
             fecha_envio_plan_pago:this.fecha_envio_plan_pago,
+            terminos:this.terminos,
         }
 
         if (this.id) {
@@ -188,6 +191,7 @@ Alpine.data("planPago", () => ({
             asesor:this.asesor,
             cliente:this.cliente,
             fecha_envio_plan_pago:this.fecha_envio_plan_pago,
+            terminos:this.terminos,
         }
 
         axios.post(`/dashboard/plan-pago-preview`, { planpago }, { responseType: 'blob' })
@@ -227,8 +231,10 @@ Alpine.data("listPlanPagos", () => ({
     },
 
     deleteItem(itemId){
-        console.log(itemId);
-        
+        let confirmar = confirm('¿Está seguro de eliminar este plan de pago?');
+        if (!confirmar) {
+            return;
+        }        
         axios.delete(`/dashboard/plan-pago/${itemId}`).then((res) => {
             toastr.success(res.data.message);
             this.getData();

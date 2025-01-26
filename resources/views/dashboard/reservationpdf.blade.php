@@ -92,7 +92,7 @@
                     <h1>FORMULARIO DE RESERVA</h1>
                 </td>
                 <td style="width: 40%; text-align: right;">
-                    <h4 style="margin-right: 3rem">FECHA: </h4>
+                    {{-- <h4 style="margin-right: 3rem">FECHA: </h4> --}}
                 </td>
                 <td style="width: 10%; text-align: center;">
                     <img src="{{asset('images/kwlogo.png')}}" style="width: 55px;height: auto;" alt="logokw">
@@ -201,12 +201,12 @@
         <br>
     </div>
     <section>
-        <table class="table-pago">
-            <thead>
+        <table class="table-pago" style="text-align: center;">
+            <thead style="text-align: center;">
                 <tr>
-                    <th>Nro. Cuota</th>
-                    <th>MONTO</th>
-                    <th>FECHA:</th>
+                    <th >Nro. Cuota</th>
+                    <th style="min-width: 150px;text-align: center;">MONTO</th>
+                    <th style="min-width: 150px;text-align: center;">FECHA:</th>
                 </tr>
             </thead>
             <tbody>
@@ -247,21 +247,11 @@
         <br>
     </div>
     <section>
-        <p>La reserva aquí señalada estará sujeta a que la suma indicada sea hecha efectiva y su monto 
-            acreditado a la cuenta de LA PROMOTORA. Y yo _____________________________________________, 
-            anteriormente identificado, DECLARO: Que estoy en pleno conocimiento que los gastos 
-            correspondientes a la reserva no son reembolsables en caso de no formalizarse la suscripción 
-            del contrato de opción de compra, el cual deberá suscribirse posteriormente al pago del inicial 
-            del inmueble, pago que deberá realizarse en un plazo no mayor de 30 días calendarios después
-             del pago de reserva, por lo que entiendo y acepto los términos expuestos en este documento. 
-            En la ciudad de Santo Domingo, República Dominicana, a los 24 días del mes Marzo de Dos Mil Veintitres (2023)
-        </p>
+        <p>{{$terminos}}      </p>
         <br><br><br>
-        <div style="display: flex; justify-content: end;">
-            <div>
+        <div style="text-align: center;">
                 <p>______________________________<br>
-                    FIRMA DEL CLIENTE
-            </div>
+                <p>FIRMA DEL CLIENTE</p>
         </div>
     </section>
 </body>

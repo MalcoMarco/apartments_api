@@ -167,6 +167,7 @@ class PlanPagoController extends Controller
             'modulo' => 'nullable|string',
             'parqueo' => 'nullable|string',
             'mantenimiento' => 'nullable|string',
+            "terminos" => 'nullable|string',
         ]);
 
         $planPago = PlanPago::create($request->all());
@@ -225,6 +226,7 @@ class PlanPagoController extends Controller
             'modulo' => 'nullable|string',
             'parqueo' => 'nullable|string',
             'mantenimiento' => 'nullable|string',
+            "terminos" => 'nullable|string',
         ]);
         $planpago->update($request->all());
         return response()->json([

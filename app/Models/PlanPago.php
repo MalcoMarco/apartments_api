@@ -146,5 +146,6 @@ class PlanPago extends Model
         "parqueo",
         "mantenimiento",
         "fecha_entrega",
+        "terminos"
     ];
 }
