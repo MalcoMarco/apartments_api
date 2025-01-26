@@ -15,11 +15,11 @@
 
         body {
             font-family: Arial, sans-serif;
-            font-size: 12px;
+            font-size: 10px;
         }
 
         .bg-primary {
-            background-color: #00305d;
+            background-color: rgb(35 56 118);
             color: white;
         }
 
@@ -30,10 +30,10 @@
             padding: 10px 20px;
         }
         h1{
-            font-size: 14px;
+            font-size: 12px;
         }
         p{
-            font-size: 12px;
+            font-size: 10px;
         }
         .txt-center {
             text-align: center;
@@ -66,6 +66,10 @@
             padding: 5px;
         }
 
+        .table-bordered th, .table-bordered td {
+            border: 1px solid #d6e2eb;
+
+        }
         .table-operacion th {
             text-align: left;
         }
@@ -85,7 +89,7 @@
 </head>
 
 <body>
-    <header class="bg-primary">
+    <header class="bg-primary" style="margin-bottom: .5rem;">
         <table style="width: 100%;">
             <tr>
                 <td style="width: 50%;">
@@ -95,32 +99,11 @@
                     {{-- <h4 style="margin-right: 3rem">FECHA: </h4> --}}
                 </td>
                 <td style="width: 10%; text-align: center;">
-                    <img src="{{asset('images/kwlogo.png')}}" style="width: 55px;height: auto;" alt="logokw">
+                    <img src="https://disponibilidad.saiko.com.do/images/kwlogo.png" style="width: 55px;height: auto;" alt="logokw">
                 </td>
             </tr>
         </table>
     </header>
-    <section class="min-h-[300px]">
-        {{-- <p style="margin-bottom: 1rem;">
-            La entidad comercial KMG INTERNATIONAL, SRL, organizada y existente de conformidad con las leyes de la
-            República Dominicana, provista del Registro
-            Nacional de Contribuyentes No. 132-78471-5, con su domicilio social establecido en la Calle Benito Moncion
-            No. 203. Edificio Alba 2do Nivel Local, SANTO
-            DOMINGO, República Dominicana, representada por los señores DAVID MELCHOR SANCHEZ de nacionalidad española,
-            mayor de edad, casado, portador
-            de la cedula de identidad nº 402-2286363-7, domiciliado y residente en la ciudad de Santo domingo, y WILLIAM
-            KING WONG de nacionalidad CANADIENSE
-            portador del Pasaporte nro.___________________ en lo sucesivo llamado LA PROMOTORA, ha recibido del (la)
-            ciudadano(a), Sr. / Sra.
-            #¿NOMBRE?
-        </p>
-
-        <p>
-            EL CLIENTE entrega la cantidad de DOS MIL DÓLARES (USD$ 2000), en depósito, transferencia o cheque Banco
-            Popular Dominicano N°832884779, por concepto
-            de RESERVA de la unidad del proyecto SAIKO Business & Corporate Center, ubicado en ...
-        </p> --}}
-    </section>
     <h1 class="bg-primary txt-center" style="padding: .5rem 0px"> PLAN DE PAGO </h1>
     <section>
         <table class="table-pago">
@@ -163,34 +146,34 @@
         </table>
     </section>
     <h1 class="bg-primary txt-center" style="padding: .5rem 0px"> OPERACÍON (En Dólares Americanos USD) </h1>
-    <section>
-        <table class="table-operacion">
+    <section style="width: 100%; text-align: center;">
+        <table class="table-operacion" style="margin: 0 auto;">
             <tr>
-                <td>VALOR DE LA PROPIEDAD</td>
+                <th>VALOR DE LA PROPIEDAD</th>
                 <td style="background-color: #ccccff;">A</td>
                 <td>{{$valor_propiedad}}</td>
                 <td>A: Monto total</td>
             </tr>
             <tr>
-                <td>RESERVA</td>
+                <th>RESERVA</th>
                 <td style="background-color: #99ccff;">B</td>
                 <td>{{$reserva}}</td>
                 <td>B: Monto de la reserva USD 2000</td>
             </tr>
             <tr>
-                <td>INICIAL</td>
+                <th>INICIAL</th>
                 <td style="background-color: #33cccc">C</td>
                 <td>{{$inicial}}</td>
                 <td>C: {{$porcentaje_saldo}}% del Saldo - reserva = {{$porcentaje_saldo}}% x (A-B)</td>
             </tr>
             <tr>
-                <td>MONTO DE LA CUOTA MENSUAL</td>
+                <th>MONTO DE LA CUOTA MENSUAL</th>
                 <td style="background-color: #333399; color:white">D</td>
                 <td>{{$monto_cuota_mensual}}</td>
                 <td>D: {{$porcentaje_monto}}% del Monto total, se paga en {{$numero_cuotas}} cuotas iguales</td>
             </tr>
             <tr>
-                <td>CONTRA ENTREGA</td>
+                <th>CONTRA ENTREGA</th>
                 <td style="background-color: #333399; color:white">E</td>
                 <td>{{$contra_entrega}} </td>
                 <td>E: El monto a pagar es = A - B - C - (D x {{$numero_cuotas}})</td>
@@ -200,11 +183,11 @@
     <div class="bg-primary">
         <br>
     </div>
-    <section>
-        <table class="table-pago" style="text-align: center;">
+    <section style="width: 100%; text-align: center;">
+        <table class="table-pago table-bordered" style="text-align: center; margin: 0 auto;">
             <thead style="text-align: center;">
                 <tr>
-                    <th >Nro. Cuota</th>
+                    <th>Nro. Cuota</th>
                     <th style="min-width: 150px;text-align: center;">MONTO</th>
                     <th style="min-width: 150px;text-align: center;">FECHA:</th>
                 </tr>
@@ -223,22 +206,22 @@
     <div class="bg-primary">
         <br>
     </div>
-    <section>
-        <table class="table-pago">
+    <section style="width: 100%;">
+        <table class="table-pago table-bordered" style="text-align: center; margin: 0 auto;">
             <tr>
-                <td>CONTRA ENTREGA: </td>
+                <th>CONTRA ENTREGA: </th>
                 <td> {{$contra_entrega}} </td>
             </tr>
             <tr>
-                <td>ASESOR INMOBILIARIO:</td>
+                <th>ASESOR INMOBILIARIO:</th>
                 <td>{{$asesor}}</td>
             </tr>
             <tr>
-                <td>CLIENTE: </td>
+                <th>CLIENTE: </th>
                 <td>{{$cliente}}</td>
             </tr>
             <tr>
-                <td>FECHA ENVÍO PLAN DE PAGO: </td>
+                <th>FECHA ENVÍO PLAN DE PAGO: </th>
                 <td>{{$fecha_envio_plan_pago}} </td>
             </tr>
         </table>
@@ -246,11 +229,11 @@
     <div class="bg-primary">
         <br>
     </div>
-    <section>
-        <p>{{$terminos}}      </p>
+    <section style="padding: 1rem 3rem;"> 
+        <p style="text-align: justify;">{{$terminos}}</p>
         <br><br><br>
         <div style="text-align: center;">
-                <p>______________________________<br>
+                <p style="margin-bottom: 1.5rem">______________________________<br>
                 <p>FIRMA DEL CLIENTE</p>
         </div>
     </section>
