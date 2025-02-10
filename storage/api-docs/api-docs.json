@@ -181,6 +181,11 @@
                                         "type": "string",
                                         "example": "Test-101"
                                     },
+                                    "square_meters": {
+                                        "description": "metros cuadrados del apartamento",
+                                        "type": "decimal",
+                                        "example": "150.5"
+                                    },
                                     "price": {
                                         "description": "Precio del apartamento",
                                         "type": "string",
@@ -313,6 +318,11 @@
                                         "description": "El nivel del apartamento",
                                         "type": "integer",
                                         "example": 3
+                                    },
+                                    "square_meters": {
+                                        "description": "metros cuadrados del apartamento",
+                                        "type": "decimal",
+                                        "example": "150.5"
                                     },
                                     "price": {
                                         "description": "Precio del apartamento",
@@ -914,6 +924,10 @@
                     "level": {
                         "description": "Level",
                         "type": "integer"
+                    },
+                    "square_meters": {
+                        "description": "metros cuadrados",
+                        "type": "number"
                     },
                     "price": {
                         "description": "Precio del apartamento",
