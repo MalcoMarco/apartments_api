@@ -39,6 +39,7 @@ Alpine.data("apartmentData", () => ({
         total_amount: "",
         availability_id: null,
         comments: null,
+        square_meters:""
     },
     modalTitle:"",
     isformCreate:false,
@@ -96,6 +97,7 @@ Alpine.data("apartmentData", () => ({
             total_amount: "",
             availability_id: null,
             comments: null,
+            square_meters:""
         };
         this.isformCreate = true
         modal.show();
@@ -112,7 +114,6 @@ Alpine.data("apartmentData", () => ({
             url: "/dashboard/apartments",
             data: {...this.apartmentItem }
           }
-        let url = "/dashboard/apartments"
         if (!this.isformCreate) {//url for update
             request.method = 'put'
             request.url += `/${this.apartmentItem.apartment_id}`

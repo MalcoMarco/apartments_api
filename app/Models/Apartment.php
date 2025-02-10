@@ -10,10 +10,14 @@ use Illuminate\Database\Eloquent\Model;
  *     type="object",
  *     title="Apartment",
  *     description="Modelo de apartamento",
- *     @OA\Property( property="apartament_id", type="string", description="ID del apartamento"
+ *     @OA\Property(
+ *          property="apartament_id", type="string", description="ID del apartamento"
  *     ),
  *     @OA\Property(
  *         property="level", type="integer", description="Level"
+ *     ),
+ *     @OA\Property(
+ *         property="square_meters", type="number", description="metros cuadrados"
  *     ),
  *     @OA\Property(
  *         property="price",  type="number", description="Precio del apartamento"
@@ -32,6 +36,7 @@ class Apartment extends Model
     protected $fillable =[
         "level",//integer
         "apartment_id",//string
+        "square_meters",//decimal
         "price",//decimal
         "total_amount",//decimal
         "availability_id",//integer

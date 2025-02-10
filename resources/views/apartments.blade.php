@@ -106,6 +106,11 @@
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 <div class="flex items-center">
+                                    M2
+                                </div>
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                <div class="flex items-center">
                                     PRICE/m2
                                     <button id="dropdownpricebtn" data-dropdown-toggle="dropdownprice" type="button">
                                         <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -222,6 +227,8 @@
                                 </td>
                                 <th scope="row" x-text="item.apartment_id" class="px-6 py-4 font-medium whitespace-nowrap">
                                 </th>
+                                <td class="px-6 py-4" x-text="item.square_meters">
+                                </td>
                                 <td class="px-6 py-4" x-text="item.price">
                                 </td>
                                 <td class="px-6 py-4" x-text="item.total_amount">

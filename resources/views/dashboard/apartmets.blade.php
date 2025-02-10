@@ -136,6 +136,11 @@
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                         <div class="flex items-center">
+                                            M2
+                                        </div>
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        <div class="flex items-center">
                                             PRICE/m2
                                             <button id="dropdownpricebtn" data-dropdown-toggle="dropdownprice"
                                                 type="button">
@@ -315,6 +320,8 @@
                                         <th scope="row" x-text="item.apartment_id"
                                             class="px-6 py-4 font-medium whitespace-nowrap">
                                         </th>
+                                        <td class="px-6 py-4" x-text="item.square_meters">
+                                        </td>
                                         <td class="px-6 py-4" x-text="item.price">
                                         </td>
                                         <td class="px-6 py-4" x-text="item.total_amount">
@@ -391,6 +398,10 @@
                               <div class="mb-1">
                                 <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
                                 <input x-model="apartmentItem.price" type="text" id="price" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="000.00" required />
+                              </div>
+                              <div class="mb-1">
+                                <label for="square_meters" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">square_meters</label>
+                                <input x-model="apartmentItem.square_meters" type="text" id="square_meters" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="000.00" required />
                               </div>
                               <div class="mb-1">
                                 <label for="total_amount" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total Amount</label>

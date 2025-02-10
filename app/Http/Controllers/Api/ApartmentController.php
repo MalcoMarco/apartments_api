@@ -125,6 +125,7 @@ class ApartmentController extends Controller
      *             required={"level", "apartment_id", "price", "total_amount", "availability_id"},
      *             @OA\Property(property="level", type="integer", example=3, description="El nivel del apartamento"),
      *             @OA\Property(property="apartment_id", type="string", example="Test-101", description="ID del apartamento"),
+     *             @OA\Property(property="square_meters", type="decimal", example="150.5", description="metros cuadrados del apartamento"),
      *             @OA\Property(property="price", type="string", format="decimal", example="350.00", description="Precio del apartamento"),
      *             @OA\Property(property="total_amount", type="string", format="decimal", example="420.00", description="Monto total"),
      *             @OA\Property(property="availability_id", type="integer", example=1, description="ID de disponibilidad"),
@@ -150,6 +151,7 @@ class ApartmentController extends Controller
         $validated = $request->validate([
             'level' => 'required|integer',
             'apartment_id' => 'required|string|max:10|unique:apartments,apartment_id',
+            'square_meters' => 'nullable|numeric',
             'price' => 'required|numeric',
             'total_amount' => 'required|numeric',
             'availability_id' => 'required|integer',
@@ -221,6 +223,7 @@ class ApartmentController extends Controller
      *         @OA\JsonContent(
      *             required={"level", "price", "total_amount", "availability_id"},
      *             @OA\Property(property="level", type="integer", example=3, description="El nivel del apartamento"),
+     *             @OA\Property(property="square_meters", type="decimal", example="150.5", description="metros cuadrados del apartamento"),
      *             @OA\Property(property="price", type="string", format="decimal", example="350.00", description="Precio del apartamento"),
      *             @OA\Property(property="total_amount", type="string", format="decimal", example="420.00", description="Monto total"),
      *             @OA\Property(property="availability_id", type="integer", example=1, description="ID de disponibilidad"),
@@ -251,6 +254,7 @@ class ApartmentController extends Controller
 
         $validated = $request->validate([
             'level' => 'required|integer',
+            'square_meters' => 'nullable|numeric',
             'price' => 'required|numeric',
             'total_amount' => 'required|numeric',
             'availability_id' => 'required|integer',
