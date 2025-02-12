@@ -9,6 +9,7 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/js/apartments.js',
                 'resources/js/dashboard/index.js',
+                'resources/js/dashboard/webconfig.js',
                 'resources/js/planPago.js',
             ],
             refresh: true,

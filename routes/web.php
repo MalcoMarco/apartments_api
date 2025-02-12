@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Api\ApartmentController;
 use App\Http\Controllers\Api\PlanPagoController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WebConfigController;
 use App\Models\Availability;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
@@ -49,6 +50,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/dashboard/plan-pago-preview', [PlanPagoController::class,'planPagoPreview']);
     Route::get('/dashboard/plan-pago-preview', [PlanPagoController::class,'planPagoPreview']);
     Route::delete('/dashboard/plan-pago/{planpago}', [PlanPagoController::class,'deletePlanPago']);
+
+    // WEB CONFIG
+    Route::get('/dashboard/webconfig', [WebConfigController::class, 'index'])->name('dashboard.webconfig');
+    Route::post('/dashboard/webconfig/upload', [WebConfigController::class, 'upload']);
+
 });
 
 Route::middleware('auth')->group(function () {

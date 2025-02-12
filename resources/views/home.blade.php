@@ -13,11 +13,14 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @php
+            $home_logo = App\Models\WebConfig::where('name', 'home_logo')->first();
+        @endphp
     </head>
     <body class="font-sans antialiased bg-primary text-white min-h-screen flex items-center flex-col">
         <main class="grid grid-cols-1 grid-rows-2 md:grid-cols-3 md:grid-rows-1 gap-4 w-full flex-1">
             <div class="flex justify-center items-center flex-col px-4">
-                <img src="/images/logo.png" class="mb-9 w-auto h-60" alt="saiko">
+                <img src="{{$home_logo->value}}" class="mb-9 w-auto h-60" alt="img">
 
                 <a href="{{route('apartments')}}" class="text-white hover:text-gray-100 border border-gray-50 hover:bg-opacity-80 focus:ring-2 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-6 w-36">MÓDULOS</a>
 

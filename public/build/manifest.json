@@ -8,7 +8,7 @@
     "name": "toastr"
   },
   "resources/css/app.css": {
-    "file": "assets/app-CtnD0Krx.css",
+    "file": "assets/app-l6LfELRO.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
@@ -38,6 +38,12 @@
     "file": "assets/index-DmRgP2V0.js",
     "name": "index",
     "src": "resources/js/dashboard/index.js",
+    "isEntry": true
+  },
+  "resources/js/dashboard/webconfig.js": {
+    "file": "assets/webconfig-BXzxMZiZ.js",
+    "name": "webconfig",
+    "src": "resources/js/dashboard/webconfig.js",
     "isEntry": true
   },
   "resources/js/planPago.js": {
