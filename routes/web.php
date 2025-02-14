@@ -22,6 +22,9 @@ use Illuminate\Support\Facades\Artisan;
 Route::get('/', function () {
     return view('home');
 });
+Route::get('/explorando', function () {
+    return view('welcome');
+});
 Route::get('/apartments', function () {
     $disponibilidades = Availability::get();
     return view('apartments',compact('disponibilidades'));
