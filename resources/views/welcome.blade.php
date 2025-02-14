@@ -98,23 +98,23 @@
 
         <!-- Nivel 01 -->
         <section class="w-full h-screen text-center">
-            <img src="/images/welcome/nivel1.jpg" class="w-full h-full object-contain" alt="">
+            <img src="/images/welcome/nivel_1.jpg" class="w-full h-full object-contain" alt="">
         </section>
         {{-- Nivel 02 --}}
         <section class="w-full h-screen text-center">
-            <img src="/images/welcome/nivel2.jpg" class="w-full h-full object-contain" alt="">
+            <img src="/images/welcome/nivel_2.jpg" class="w-full h-full object-contain" alt="">
         </section>
         {{-- Nivel 03 --}}
         <section class="w-full h-screen text-center">
-            <img src="/images/welcome/nivel3.jpg" class="w-full h-full object-contain" alt="">
+            <img src="/images/welcome/nivel_3.jpg" class="w-full h-full object-contain" alt="">
         </section>
         {{-- Nivel 04 --}}
         <section class="w-full h-screen text-center">
-            <img src="/images/welcome/nivel4.jpg" class="w-full h-full object-contain" alt="">
+            <img src="/images/welcome/nivel_4.jpg" class="w-full h-full object-contain" alt="">
         </section>
         {{-- sotea --}}
         <section class="w-full h-screen text-center">
-            <img src="/images/welcome/sotea.jpg" class="w-full h-full object-contain" alt="">
+            <img src="/images/welcome/sotea_.jpg" class="w-full h-full object-contain" alt="">
         </section>
 
         <section class="w-full h-screen flex flex-col justify-center items-center py-6 sm:p-8 sm:rounded-lg">
