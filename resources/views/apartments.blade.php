@@ -23,7 +23,7 @@
     <main x-data="apartmentData()" x-init="initApartments" x-on:orderBy="orderBy" class="min-h-screen pt-2">
         <div class="flex items-center flex-col mb-6">
             <a href="/"><img src="{{$small_logo_light->value}}" class="w-auto h-20" alt="logo"></a>
-            <p>SAIKO BUSINESS & CORPORATE CENTER</p>
+            {{-- <p>SAIKO BUSINESS & CORPORATE CENTER</p> --}}
         </div>
 
 
