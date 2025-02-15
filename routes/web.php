@@ -24,7 +24,7 @@ Route::get('/', function () {
 });
 Route::get('/explorando', function () {
     return view('welcome');
-});
+})->name("explorando");
 Route::get('/apartments', function () {
     $disponibilidades = Availability::get();
     return view('apartments',compact('disponibilidades'));
