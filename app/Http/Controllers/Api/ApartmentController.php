@@ -153,9 +153,10 @@ class ApartmentController extends Controller
             'apartment_id' => 'required|string|max:10|unique:apartments,apartment_id',
             'square_meters' => 'nullable|numeric',
             'price' => 'required|numeric',
-            'total_amount' => 'required|numeric',
+            'total_amount' => 'nullable|numeric',
             'availability_id' => 'required|integer',
             'comments' => 'nullable|string',
+            'type' => 'nullable|string',
         ]);
     
         $apartment = Apartment::create($validated);
@@ -256,9 +257,10 @@ class ApartmentController extends Controller
             'level' => 'required|integer',
             'square_meters' => 'nullable|numeric',
             'price' => 'required|numeric',
-            'total_amount' => 'required|numeric',
+            'total_amount' => 'nullable|numeric',
             'availability_id' => 'required|integer',
             'comments' => 'nullable|string',
+            'type' => 'nullable|string',
         ]);
     
         $apartment->update($validated);

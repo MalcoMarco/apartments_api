@@ -36,6 +36,7 @@ class Apartment extends Model
     protected $fillable =[
         "level",//integer
         "apartment_id",//string
+        "type",//string
         "square_meters",//decimal
         "price",//decimal
         "total_amount",//decimal

@@ -39,7 +39,8 @@ Alpine.data("apartmentData", () => ({
         total_amount: "",
         availability_id: null,
         comments: null,
-        square_meters:""
+        square_meters:"",
+        type:"",
     },
     modalTitle:"",
     isformCreate:false,
@@ -97,7 +98,8 @@ Alpine.data("apartmentData", () => ({
             total_amount: "",
             availability_id: null,
             comments: null,
-            square_meters:""
+            square_meters:"",
+            type:"",
         };
         this.isformCreate = true
         modal.show();

@@ -200,62 +200,7 @@
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                         <div class="flex items-center">
-                                            TOTAL AMOUNT
-                                            <button id="dropdowntotal_amountbtn"
-                                                data-dropdown-toggle="dropdowntotal_amount" type="button">
-                                                <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 10 6">
-                                                    <path stroke="currentColor" stroke-linecap="round"
-                                                        stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                                                </svg>
-                                            </button>
-                                            <!-- Dropdown menu -->
-                                            <div id="dropdowntotal_amount"
-                                                class="z-10 hidden rounded-lg shadow w-44 bg-gray-700">
-                                                <ul class="py-2 text-sm text-gray-200"
-                                                    aria-labelledby="dropdowntotal_amountbtn">
-                                                    <li>
-                                                        <button @click="orderBy('-total_amount')"
-                                                            class="w-full block px-4 py-2 hover:bg-gray-600 hover:text-white">Descendentemente</button>
-                                                    </li>
-                                                    <li>
-                                                        <button @click="orderBy('total_amount')"
-                                                            class="w-full block px-4 py-2 hover:bg-gray-600 hover:text-white">Ascendentemente</button>
-                                                    </li>
-                                                </ul>
-                                                <div class="px-3 mb-3">
-                                                    <label for="input-group-total_amount"
-                                                        class="sr-only">Search</label>
-                                                    <div class="relative">
-                                                        <div
-                                                            class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                                                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
-                                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                                fill="none" viewBox="0 0 20 20">
-                                                                <path stroke="currentColor" stroke-linecap="round"
-                                                                    stroke-linejoin="round" stroke-width="2"
-                                                                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                                            </svg>
-                                                        </div>
-                                                        <input x-model="filter.total_amount"
-                                                            x-on:input.debounce.500ms="search" type="text"
-                                                            id="input-group-total_amount"
-                                                            class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                            placeholder="buscar">
-                                                    </div>
-                                                </div>
-                                                <div class="w-full px-3 text-right mb-2" x-show="filter.total_amount">
-                                                    <button @click="resetColum('total_amount')"
-                                                        class="text-red-500 p-1 bg-white rounded-md hover:bg-red-500 hover:text-white">
-                                                        <svg class="w-5 h-5" fill="currentColor"
-                                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                            <path
-                                                                d="M64 80c-8.8 0-16 7.2-16 16l0 320c0 8.8 7.2 16 16 16l384 0c8.8 0 16-7.2 16-16l0-320c0-8.8-7.2-16-16-16L64 80zM0 96C0 60.7 28.7 32 64 32l384 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96zm175 79c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z" />
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                            </div>
+                                            TYPE
                                         </div>
                                     </th>
                                     <th scope="col" class="px-6 py-3">
@@ -324,7 +269,7 @@
                                         </td>
                                         <td class="px-6 py-4" x-text="item.price">
                                         </td>
-                                        <td class="px-6 py-4" x-text="item.total_amount">
+                                        <td class="px-6 py-4" x-text="item.type">
                                         </td>
                                         <td class="px-6 py-4" x-text="item.availability.name">
                                         </td>
@@ -404,8 +349,8 @@
                                 <input x-model="apartmentItem.square_meters" type="text" id="square_meters" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="000.00" required />
                               </div>
                               <div class="mb-1">
-                                <label for="total_amount" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total Amount</label>
-                                <input x-model="apartmentItem.total_amount" type="text" id="total_amount" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="000.00" required />
+                                <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
+                                <input x-model="apartmentItem.type" type="text" id="type" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="000.00" required />
                               </div>
                               <div class="mb-1">
                                 <label for="availability_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Availability</label>
