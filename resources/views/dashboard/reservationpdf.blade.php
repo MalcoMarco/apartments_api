@@ -99,7 +99,7 @@
                     {{-- <h4 style="margin-right: 3rem">FECHA: </h4> --}}
                 </td>
                 <td style="width: 10%; text-align: center;">
-                    <img src="https://disponibilidad.terrazasderamses.com.do/images/terrazas.png" style="width: 55px;height: auto;" alt="">
+                    <img src="{{url('images/terrazaslogo.png')}}" style="width: 55px;height: auto;" alt="">
                 </td>
             </tr>
         </table>

@@ -237,9 +237,13 @@ class PlanPagoController extends Controller
 
     function planPagoPreview(Request $request) {
         //$planpago = PlanPago::find(2)->toArray();
+        
         $planpago = $request->input('planpago');
         $planpago['lista_cuotas'] = json_decode($planpago['lista_cuotas']);
         //dd($planpago);
+        //return view('dashboard.reservationpdf')->with($planpago);
+
+
         $pdf = PDF::loadView('dashboard.reservationpdf', $planpago);
 
         return response()->streamDownload(function() use ($pdf) {
