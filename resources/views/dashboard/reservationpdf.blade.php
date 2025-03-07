@@ -95,11 +95,11 @@
                 <td style="width: 50%;">
                     <h1>FORMULARIO DE RESERVA</h1>
                 </td>
-                <td style="width: 40%; text-align: right;">
+                <td style="width: 30%; text-align: right;">
                     {{-- <h4 style="margin-right: 3rem">FECHA: </h4> --}}
                 </td>
-                <td style="width: 10%; text-align: center;">
-                    <img src="{{url('images/terrazaslogo.png')}}" style="width: 55px;height: auto;" alt="">
+                <td style="width: 20%; text-align: center;">
+                    <img src="https://disponibilidad.terrazasderamses.com.do/images/terrazaslogo.png" style="width: 55px;height: 50px;" alt="">
                 </td>
             </tr>
         </table>

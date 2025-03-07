@@ -8,6 +8,8 @@ use App\Models\PlanPago;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 use PDF;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 class PlanPagoController extends Controller
 {
     
@@ -236,18 +238,25 @@ class PlanPagoController extends Controller
     }
 
     function planPagoPreview(Request $request) {
-        //$planpago = PlanPago::find(2)->toArray();
         
         $planpago = $request->input('planpago');
         $planpago['lista_cuotas'] = json_decode($planpago['lista_cuotas']);
-        //dd($planpago);
-        //return view('dashboard.reservationpdf')->with($planpago);
 
+        // Configurar Dompdf
+        $options = new Options();
+        $options->set('isRemoteEnabled', true);
+        $dompdf = new Dompdf($options);
 
-        $pdf = PDF::loadView('dashboard.reservationpdf', $planpago);
+        // Cargar el contenido HTML
+        $html = view('dashboard.reservationpdf', $planpago)->render();
+        $dompdf->loadHtml($html);
 
-        return response()->streamDownload(function() use ($pdf) {
-            echo $pdf->stream();
+        // Renderizar el PDF
+        $dompdf->render();
+
+        // Enviar el PDF al navegador
+        return response()->streamDownload(function() use ($dompdf) {
+            echo $dompdf->output();
         }, 'reservations.pdf');
     }
 
